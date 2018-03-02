@@ -11,7 +11,7 @@ Frequency=3507174 Hz, Resolution=285.1299 ns, Timer=TSC
 Job=Clr  Runtime=Clr
 
 ```
-         Method |       Mean |     Error |     StdDev | Scaled |
---------------- |-----------:|----------:|-----------:|-------:|
- EmitSequential | 1,926.2 ms | 38.967 ms | 109.906 ms |   1.00 |
-   EmitParallel |   336.4 ms |  5.651 ms |   5.286 ms |   0.18 |
+|         Method |     Mean |    Error |   StdDev | Scaled |
+|--------------- |---------:|---------:|---------:|-------:|
+| EmitSequential | 415.7 ms | 5.046 ms | 4.214 ms |   1.00 |
+|   EmitParallel | 125.3 ms | 1.997 ms | 1.868 ms |   0.30 |

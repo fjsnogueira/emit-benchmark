@@ -37,9 +37,9 @@ namespace ParallelCompilation
 
         private static string GetOutputFolder(string testType)
         {
-            var temp = Path.GetTempPath();
+            var temp = Directory.GetCurrentDirectory();
             var runFolder = Path.GetRandomFileName();
-            string sequentialOutputFolder = Path.Combine(temp, runFolder, testType);
+            string sequentialOutputFolder = Path.Combine(temp, "BenchmarkDotNet.Artifacts", "TestArtifacts", runFolder, testType);
             Directory.CreateDirectory(sequentialOutputFolder);
             return sequentialOutputFolder;
         }
@@ -160,7 +160,7 @@ namespace classes
         public string Number { get; }
         public string Owner { get; set; }
 #region BalanceComputation
-        public decimal Balance 
+        public decimal Balance
         {
             get
             {
