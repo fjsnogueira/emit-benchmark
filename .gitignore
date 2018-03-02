@@ -17,6 +17,7 @@ x64/
 [Oo]bj/
 .dotnet/
 .tools/
+src/BenchmarkDotNet.Artifacts
 
 # Per-user project properties
 launchSettings.json
