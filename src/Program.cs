@@ -83,13 +83,16 @@ namespace ParallelCompilation
         }, LazyThreadSafetyMode.ExecutionAndPublication);
         public static SyntaxTree[] SyntaxTrees => SyntaxTreesLazy.Value;
         private static readonly Lazy<SyntaxTree[]> SyntaxTreesLazy =
-            new Lazy<SyntaxTree[]>(() => new[] { CodeTree, ClassTree }, LazyThreadSafetyMode.ExecutionAndPublication);
+            new Lazy<SyntaxTree[]>(() => new[] { CodeTree, ClassTree, TransactionTree }, LazyThreadSafetyMode.ExecutionAndPublication);
         public static SyntaxTree CodeTree => CodeTreeLazy.Value;
         private static readonly Lazy<SyntaxTree> CodeTreeLazy =
             new Lazy<SyntaxTree>(() => CSharpSyntaxTree.ParseText(code), LazyThreadSafetyMode.ExecutionAndPublication);
         public static SyntaxTree ClassTree => ClassTreeLazy.Value;
         private static readonly Lazy<SyntaxTree> ClassTreeLazy =
             new Lazy<SyntaxTree>(() => CSharpSyntaxTree.ParseText(@class), LazyThreadSafetyMode.ExecutionAndPublication);
+        public static SyntaxTree TransactionTree => TransactionTreeLazy.Value;
+        private static readonly Lazy<SyntaxTree> TransactionTreeLazy =
+            new Lazy<SyntaxTree>(() => CSharpSyntaxTree.ParseText(transaction), LazyThreadSafetyMode.ExecutionAndPublication);
         public static MetadataReference[] References => ReferencesLazy.Value;
         private static readonly Lazy<MetadataReference[]> ReferencesLazy =
             new Lazy<MetadataReference[]>(() => new[] { CorlibReference, SystemCoreReference }, LazyThreadSafetyMode.ExecutionAndPublication);
@@ -229,6 +232,27 @@ namespace classes
     }
     #endregion
 }
+}
+";
+
+        const string transaction = @"
+using System;
+
+namespace classes
+{
+    public class Transaction
+    {
+        public decimal Amount { get; }
+        public DateTime Date { get; }
+        public string Notes { get; }
+
+        public Transaction(decimal amount, DateTime date, string note)
+        {
+            this.Amount = amount;
+            this.Date = date;
+            this.Notes = note;
+        }
+    }
 }
 ";
     }
